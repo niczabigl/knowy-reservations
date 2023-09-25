@@ -1,0 +1,50 @@
+<ng-container>
+    <div class="reservations-list-header">
+        <div>
+            <h2>Reservations list</h2>
+        </div>
+        <div class="wrapper">
+            <p-button styleClass="p-button-raised p-button-text p-button-help" icon="pi pi-home" label="Go Home Page"
+                (click)="goHome()"></p-button>
+            <p-button (click)="createReservation()" icon="pi pi-plus" class="mobile"
+                styleClass="p-button-rounded"></p-button>
+            <p-button (click)="createReservation()" class="add-Reservation-button desktop"
+                styleClass="p-button-info">Create
+                Reservation</p-button>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <p-table [value]="reservations" responsiveLayout="stack" [breakpoint]="'500px'">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Region</th>
+                    <th>Pax</th>
+                    <th>Childrens</th>
+                    <th>User Id</th>
+                    <th class="last-cell">Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-reservation let-columns="columns">
+                <tr class="tbody-row">
+                    <td><span class="p-column-title">Id</span>{{ reservation.id }}</td>
+                    <td><span class="p-column-title">Date</span>{{ reservation.reservationInfo.date | date: 'medium'
+                        }}</td>
+                    <td><span class="p-column-title">Region</span>{{ reservation.reservationInfo.dinnerRegionId }}</td>
+                    <td><span class="p-column-title">Pax</span>{{ reservation.reservationInfo.pax }}</td>
+                    <td><span class="p-column-title">Childrens</span>{{ reservation.reservationInfo.childrens }}</td>
+                    <td><span class="p-column-title">User Id</span> {{ reservation.userId }}</td>
+                    <td class="last-cell"><span class="p-column-title">Actions</span>
+                        <div>
+                            <p-button (click)="editReservation($event, reservation)" class="action-button"
+                                styleClass="p-button-rounded p-button-warning" icon="pi pi-pencil"></p-button>
+                            <p-button (click)="deleteReservation($event, reservation)" class="action-button"
+                                styleClass="p-button-rounded p-button-danger" icon="pi pi-trash"></p-button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</ng-container>

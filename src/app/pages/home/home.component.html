@@ -1,0 +1,36 @@
+<div class="page">
+    <div class="global-wrapper" *ngIf="vm$ | async as vm">
+        <div class="landing-page" *ngIf="!vm.isLoading; else loadingInfo">
+            <h1>Welcome to Kafè Restaurant</h1>
+            <p>Discover a world of flavors.</p>
+            <div class="mission">
+                <h2>Our Mission</h2>
+                <p>At Kafè, we are dedicated to providing exceptional culinary experiences that tantalize your taste
+                    buds and
+                    leave you craving for more.</p>
+            </div>
+            <div class="gallery">
+                <p-carousel [value]="images" [numVisible]="3" [numScroll]="1" [circular]="true"
+                    verticalViewPortHeight="360px" [autoplayInterval]="3000">
+                    <ng-template let-image pTemplate="item">
+                        <img [src]="image.src" alt="image.alt">
+                    </ng-template>
+                </p-carousel>
+
+            </div>
+            <div class="cta-button">
+                <p-button (click)="startReservation()" icon="pi pi-calendar-plus" label="Make a Reservation"
+                    styleClass="p-button p-button-primary"></p-button>
+            </div>
+            <div class="contact-info">
+                <h2>Contact Us</h2>
+                <p>Carrer principal, Andorra la Vella, AND</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Email: info@kaferestaurant.com</p>
+            </div>
+        </div>
+        <ng-template #loadingInfo>
+            <p-progressSpinner strokeWidth="2" fill="transparent" animationDuration="2s"></p-progressSpinner>
+        </ng-template>
+    </div>
+</div>

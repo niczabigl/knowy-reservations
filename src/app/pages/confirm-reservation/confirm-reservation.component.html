@@ -1,0 +1,66 @@
+<div class="page">
+    <div class="global-wrapper" *ngIf="history$ | async as hist">
+        <div class="landing-page">
+            <h1>Hi {{hist.state.userInfoForm.name}}! You will submit this reservation</h1>
+            <p>Please double check the reservation info before confirm.</p>
+            <div>
+                <h2>Reservation Info</h2>
+                <div class="table-wrapper">
+                    <p-table [value]="[hist.state.reservationInfoForm]" scrollHeight="350px" responsiveLayout="stack"
+                        [breakpoint]="'500px'">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th>Date</th>
+                                <th>Dinner Region</th>
+                                <th>Pax</th>
+                                <th>Childrens</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-reservationInfo let-columns="columns">
+                            <tr>
+                                <td><span class="p-column-title">Date</span>{{ reservationInfo.date | date: 'medium'
+                                    }}</td>
+                                <td><span class="p-column-title">Dinner Region</span>{{ reservationInfo.dinnerRegionId
+                                    }}</td>
+                                <td><span class="p-column-title">Pax</span>{{ reservationInfo.pax }}</td>
+                                <td><span class="p-column-title">Childrens</span>{{ reservationInfo.childrens }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <h2>User Info</h2>
+                <div class="table-wrapper">
+                    <p-table [value]="[hist.state.userInfoForm]" scrollHeight="350px" responsiveLayout="stack"
+                        [breakpoint]="'500px'">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-userInfo let-columns="columns">
+                            <tr>
+                                <td><span class="p-column-title">Name</span>{{ userInfo.name }}</td>
+                                <td><span class="p-column-title">Email</span>{{ userInfo.email }}</td>
+                                <td><span class="p-column-title">Phone</span>{{ userInfo.phone }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="cta-button">
+                    <p-button class="action-button" (click)="editReservation()" icon="pi pi-pencil" label="Edit"
+                        styleClass="p-button-raised p-button-text p-button-warning"></p-button>
+                </div>
+                <div class="cta-button">
+                    <p-button class="action-button" (click)="confirmReservation()" icon="pi pi-plus" label="Confirm"
+                        styleClass="p-button p-button-primary"></p-button>
+                </div>
+            </div>
+            <ng-template #loadingInfo>
+                <p-progressSpinner strokeWidth="2" fill="transparent" animationDuration="2s"></p-progressSpinner>
+            </ng-template>
+        </div>
+    </div>

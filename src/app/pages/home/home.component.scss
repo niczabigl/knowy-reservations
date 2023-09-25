@@ -1,0 +1,29 @@
+.landing-page {
+    text-align: center;
+}
+
+.mission {
+    margin-top: 20px;
+}
+
+.gallery {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery img {
+    max-width: 100%;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-info {
+    margin-top: 30px;
+}
+
+.cta-button {
+    margin-top: 20px;
+}

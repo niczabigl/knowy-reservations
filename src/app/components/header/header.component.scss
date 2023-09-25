@@ -1,0 +1,21 @@
+@import '../../../styles.scss';
+
+.header {
+    background: lightgrey;
+    color: $color-white;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+
+    & .header-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    & .logo {
+        width: 120px;
+        height: 64px;
+    }
+}

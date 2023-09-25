@@ -1,0 +1,12 @@
+<ng-container *ngIf="vm$ | async as vm">
+    <div class="page">
+        <div class="global-wrapper">
+            <ng-container *ngIf="!vm.isLoading; else loadingInfo">
+                <app-reservations-list [reservations]="vm.reservations" [users]="vm.users"></app-reservations-list>
+            </ng-container>
+            <ng-template #loadingInfo>
+                <p-progressSpinner strokeWidth="2" fill="transparent" animationDuration="2s"></p-progressSpinner>
+            </ng-template>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,124 @@
+<div class="p-fluid" *ngIf="coreConfig$ | async as coreConfig">
+    <form [formGroup]="reservationForm" (ngSubmit)="submit()">
+        <div formGroupName="reservationInfoForm">
+            <div class="inputfield">
+                <label htmlFor="date">Reservation date</label>
+                <div class="inputwrapper">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-calendar"></i>
+                        </span>
+                        <p-calendar inputId="date" formControlName="date" (onSelect)="reservationFormHasSameValues()"
+                            [minDate]="coreConfig.restaurant.datePeriod.startDate"
+                            [maxDate]="coreConfig.restaurant.datePeriod.endDate" [readonlyInput]="true"
+                            [defaultDate]="coreConfig.restaurant.datePeriod.startDate" placeholder="date"
+                            date></p-calendar>
+                    </div>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-clock"></i>
+                        </span>
+                        <p-inputNumber formControlName="hour" (onInput)="reservationFormHasSameValues()"
+                            [showButtons]="true" [min]="coreConfig.restaurant.schedule.startHour"
+                            [max]="coreConfig.restaurant.schedule.endHour" placeholder="hour" hour>
+                        </p-inputNumber>
+                        <p-inputNumber formControlName="minutes" (onInput)="reservationFormHasSameValues()"
+                            [showButtons]="true" [min]="0" [max]="coreConfig.restaurant.schedule.stepMinutes"
+                            [step]="coreConfig.restaurant.schedule.stepMinutes" placeholder="minutes" minutes>
+                        </p-inputNumber>
+                        <!-- <p-calendar formControlName="date" [timeOnly]="true" [showTime]="true"
+                            [step]="coreConfig.restaurant.schedule.stepMinutes"
+                            date></p-calendar> -->
+                    </div>
+                </div>
+            </div>
+            <div class="inputfield">
+                <label htmlFor="dinnerRegion">Where to sit</label>
+                <div class="inputwrapper">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-map-marker"></i>
+                    </span>
+                    <p-dropdown inputId="reservation-dinner-region" (onChange)="reservationFormHasSameValues()"
+                        appendTo="body" formControlName="dinnerRegion" [options]="coreConfig.restaurant.regions"
+                        optionLabel="name" placeholder="Select dinner Region" dinnerRegion></p-dropdown>
+                </div>
+                <span class="label-error" *ngIf="reservationForm.errors?.childrensNotAllowedInDinnerRegion">
+                    Childrens are not allowed on this dinner region
+                </span>
+            </div>
+            <div class="inputfield">
+                <label htmlFor="pax">How many people</label>
+                <div class="inputwrapper">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-users"></i>
+                        </span>
+                        <p-inputNumber inputId="pax" formControlName="pax" (onInput)="reservationFormHasSameValues()"
+                            [showButtons]="false" [min]="1" [max]="12" placeholder="pax" pax>
+                        </p-inputNumber>
+                    </div>
+                </div>
+                <span class="label-error" *ngIf="reservationForm.errors?.maxPaxExceeded">
+                    You have exceeded the maximum pax cuantity
+                </span>
+            </div>
+            <div class="inputfield">
+                <label htmlFor="childrens">How many childrens</label>
+                <div class="inputwrapper">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-calendar"></i>
+                        </span>
+                        <p-inputNumber inputId="childrens" formControlName="childrens"
+                            (onInput)="reservationFormHasSameValues()" [showButtons]="true" [min]="0" [max]="11"
+                            placeholder="childrens" childrens>
+                        </p-inputNumber>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div formGroupName="userInfoForm">
+            <div class="inputfield">
+                <label htmlFor="name">Your name</label>
+                <div class="inputwrapper">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-user"></i>
+                        </span>
+                        <input id="name" pInputText formControlName="name" (change)="reservationFormHasSameValues()"
+                            required placeholder="name" name />
+                    </div>
+                </div>
+            </div>
+            <div class="inputfield">
+                <label htmlFor="email">Your Email</label>
+                <div class="inputwrapper">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-at"></i>
+                        </span>
+                        <input id="email" pInputText formControlName="email" (change)="reservationFormHasSameValues()"
+                            required placeholder="email" email />
+                    </div>
+                </div>
+            </div>
+            <div class="inputfield">
+                <label htmlFor="phone">Your phone number</label>
+                <div class="inputwrapper">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-phone"></i>
+                        </span>
+                        <input id="phone" minlength="9" pInputText formControlName="phone"
+                            (change)="reservationFormHasSameValues()" required placeholder="phone" phone />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-field">
+            <button pButton type="submit" label="{{(isEdit || preEdit) ? 'Edit Reservation' : 'Create Reservation'}}"
+                [disabled]="reservationForm.invalid || !canSubmit"></button>
+        </div>
+    </form>
+</div>

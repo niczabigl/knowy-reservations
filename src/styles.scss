@@ -1,0 +1,94 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+
+$color-primary-a: orange;
+$color-primary-b: #747370;
+
+$color-secondary-a: #FFCC00;
+$color-secondary-b: #eae0c3;
+
+$color-black : black;
+$color-white : white;
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+    .header {
+        background-color: $color-black;
+    }
+
+    .item-wrapper {
+        color: $color-white
+    }
+}
+
+.global-wrapper {
+    width: 75%;
+    margin: auto;
+}
+
+.page {
+    padding-bottom: 100px;
+}
+
+.reservations-list-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-wrapper {
+    margin-bottom: 2rem;
+}
+
+.p-datatable-thead>tr>th.last-cell,
+.p-datatable-tbody>tr>td.last-cell {
+    text-align: right;
+}
+
+.wrapper {
+    display: flex;
+    align-self: center;
+}
+
+.inputfield {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.inputwrapper {
+    display: flex;
+}
+
+.label-error {
+    font-size: smaller;
+    color: red;
+}
+
+.action-button {
+    margin-left: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .desktop {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+}
