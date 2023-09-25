@@ -1,7 +1,12 @@
 # knowy-reservations
 Angular + ngrx +rjxs +  (knowy)
 
-## Context
+## Commands
+
+npm run `init`: Executes npm install dependencies.
+npm run `init:reinstall`: Reinstall dependencies.
+npm run `start` : Execute app and open a new browser tab listenting on port: 4200
+npm runt `test` : Execute tests and coverage.
 
 ### Problem
 
