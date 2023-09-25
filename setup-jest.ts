@@ -1,16 +1,3 @@
-// require('zone.js/dist/zone')
-// require('zone.js/dist/zone-testing')
-// const getTestBed = require('@angular/core/testing').getTestBed
-// const BrowserDynamicTestingModule = require('@angular/platform-browser-dynamic/testing')
-//     .BrowserDynamicTestingModule
-// const platformBrowserDynamicTesting = require('@angular/platform-browser-dynamic/testing')
-//     .platformBrowserDynamicTesting
-
-// getTestBed().initTestEnvironment(
-//     BrowserDynamicTestingModule,
-//     platformBrowserDynamicTesting()
-// )
-
 import 'zone.js/dist/zone';
 import 'zone.js/dist/zone-testing';
 import { TestBed } from '@angular/core/testing';
