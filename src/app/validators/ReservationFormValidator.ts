@@ -25,7 +25,7 @@ export class ReservationFormValidator {
 
             const selectedRegion = regions.filter((region: DinnerRegion) => region.id === dinnerRegionValue.id)[0];
             if (childrensValue > 0 && !selectedRegion.acceptChildren) {
-                return { childrensNotAllowedInDinnerRegion: true };
+                return { childrensNotAllowedInDinnerRegion: true, selectedRegion: selectedRegion };
             }
 
             return null;
@@ -56,7 +56,7 @@ export class ReservationFormValidator {
             const isExceeded = maxPax > selectedRegion.maxPax;
 
             if (isExceeded) {
-                return { maxPaxExceeded: true };
+                return { maxPaxExceeded: true, selectedRegion: selectedRegion };
             }
 
             return null;

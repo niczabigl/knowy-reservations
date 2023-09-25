@@ -42,9 +42,6 @@
                         appendTo="body" formControlName="dinnerRegion" [options]="coreConfig.restaurant.regions"
                         optionLabel="name" placeholder="Select dinner Region" dinnerRegion></p-dropdown>
                 </div>
-                <span class="label-error" *ngIf="reservationForm.errors?.childrensNotAllowedInDinnerRegion">
-                    Childrens are not allowed on this dinner region
-                </span>
             </div>
             <div class="inputfield">
                 <label htmlFor="pax">How many people</label>
@@ -59,7 +56,8 @@
                     </div>
                 </div>
                 <span class="label-error" *ngIf="reservationForm.errors?.maxPaxExceeded">
-                    You have exceeded the maximum pax cuantity
+                    You have exceeded the maximum pax cuantity [{{reservationForm.errors?.selectedRegion.maxPax}}] for
+                    {{reservationForm.errors?.selectedRegion.name}}
                 </span>
             </div>
             <div class="inputfield">
@@ -75,6 +73,10 @@
                         </p-inputNumber>
                     </div>
                 </div>
+                <span class="label-error" *ngIf="reservationForm.errors?.childrensNotAllowedInDinnerRegion">
+                    Childrens are not allowed on this dinner region
+                    [{{reservationForm.errors?.selectedRegion.name}}]
+                </span>
             </div>
         </div>
         <div formGroupName="userInfoForm">

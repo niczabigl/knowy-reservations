@@ -47,7 +47,6 @@ export class ReservationsListComponent {
                 data: { isEdit: true, reservationId: reservation.id, userId: reservation.userId, reservationInfo: reservation.reservationInfo, userInfo }
             });
         this.ref.onClose.pipe(take(1), filter((editForm) => !!editForm)).subscribe(({ reservationInfoForm }: { reservationInfoForm: ReservationInfo }) => {
-            console.log('Editing from list', reservationInfoForm);
             this.store.dispatch(updateReservation({ reservation: { reservationInfo: reservationInfoForm, id: reservation.id, userId: reservation.userId } }));
         });
     }
